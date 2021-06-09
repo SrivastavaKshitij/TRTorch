@@ -34,7 +34,11 @@ RUN python3 setup.py install --use-cxx11-abi
 
 RUN conda init bash
 
+RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt.git /sw/torch2trt && \
+	cd /sw/torch2trt && \
+    python setup.py install --plugins
+
 ENV LD_LIBRARY_PATH /opt/conda/lib/python3.8/site-packages/torch/lib:$LD_LIBRARY_PATH
 
-WORKDIR /opt/trtorch/
+WORKDIR /workspace/work/
 CMD /bin/bash
